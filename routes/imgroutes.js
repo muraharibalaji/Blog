@@ -19,9 +19,13 @@ router.post('/upload',upload.single('image'),async (req, res) => {
         const image = new imgmodel();
         image.data = req.file.buffer;
         image.contentType = req.file.mimetype;
+        image.title = req.body.title;
+        image.desc = req.body.desc;
         await image.save();
   
-        console.log('Image saved to MongoDB');
+        console.log('Image saved to MongoDBAtlas');
+        console.log('title:',image.title);
+        console.log('desc:',image.desc);
 
         res.status(200).json({ message: 'Image uploaded successfully' });
     } catch (error) {
@@ -30,6 +34,20 @@ router.post('/upload',upload.single('image'),async (req, res) => {
     }
 });
 
+router.get('/images', async (req, res) => {
+    try {
+        const images = await Image.find();
+        const imageData = images.map((image) => ({
+            data: image.data.toString('base64'),
+            contentType: image.contentType,
+        }));
+
+        res.status(200).json(imageData);
+    } catch (error) {
+        console.error(error);
+        res.status(500).json({ message: 'Internal server error' });
+    }
+});
 router.post('/test',(req, res) => {
     console.log("inside test");
 })
