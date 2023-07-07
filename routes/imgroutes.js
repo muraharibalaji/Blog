@@ -16,7 +16,7 @@ router.post('/upload',upload.single('image'),async (req, res) => {
     console.log("inside upload");
     
     try {
-        const image = new Image();
+        const image = new imgmodel();
         image.data = req.file.buffer;
         image.contentType = req.file.mimetype;
         await image.save();
