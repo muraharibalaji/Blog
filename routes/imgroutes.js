@@ -40,6 +40,8 @@ router.get('/images', async (req, res) => {
         const imageData = images.map((image) => ({
             data: image.data.toString('base64'),
             contentType: image.contentType,
+            title:image.title,
+            desc:image.desc
         }));
 
         res.status(200).json(imageData);
