@@ -27,16 +27,16 @@ router.post('/upload',upload.single('image'),async (req, res) => {
         console.log('title:',image.title);
         console.log('desc:',image.desc);
 
-        res.status(200).json({ message: 'Image uploaded successfully' });
+        res.status(200).json({ message: ' blog Image uploaded successfully' });
     } catch (error) {
         console.error(error);
-        res.status(500).json({ message: 'Internal server error' });
+        res.status(500).json({ message: 'Internal server error in blog project' });
     }
 });
 
 router.get('/images', async (req, res) => {
     try {
-        const images = await Image.find();
+        const images = await imgmodel.find();
         const imageData = images.map((image) => ({
             data: image.data.toString('base64'),
             contentType: image.contentType,
@@ -45,7 +45,7 @@ router.get('/images', async (req, res) => {
         res.status(200).json(imageData);
     } catch (error) {
         console.error(error);
-        res.status(500).json({ message: 'Internal server error' });
+        res.status(500).json({ message: 'Internal server error in blog projects' });
     }
 });
 router.post('/test',(req, res) => {
