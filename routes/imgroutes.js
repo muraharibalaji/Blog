@@ -1,5 +1,6 @@
 
 const imgmodel = require('../models/imagesmodel');
+const imgcont = require('../controller/imgcontroller');
 const express = require('express');
 const multer=require("multer")
 const router = express.Router()
@@ -44,7 +45,7 @@ router.get('/images', async (req, res) => {
             desc:image.desc
         }));
 
-        res.status(200).json(imageData);
+        res.status(200).json("file uploaded");
     } catch (error) {
         console.error(error);
         res.status(500).json({ message: 'Internal server error in blog projects' });
@@ -56,5 +57,8 @@ router.post('/test',(req, res) => {
 
 
 
-
+router.post('/register',imgcont.register);
+router.post('/login',imgcont.login);
 module.exports = router;
+
+
