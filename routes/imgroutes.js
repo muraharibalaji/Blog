@@ -45,7 +45,7 @@ router.get('/images', async (req, res) => {
             desc:image.desc
         }));
 
-        res.status(200).json("file uploaded");
+        res.status(200).json(imageData);
     } catch (error) {
         console.error(error);
         res.status(500).json({ message: 'Internal server error in blog projects' });
