@@ -11,7 +11,6 @@ const imageschema =new schema
     },
     password:{
         type:"string",
-        type:"string",
         required:true
     }
 })

@@ -4,6 +4,11 @@ const imgschema = new s
 ({
 data:Buffer,
 contentType:String,
+user_id:
+{
+    type:s.Types.ObjectId,
+    ref:"imgblog"
+},
 title:{
     type:"string",
     required:true
