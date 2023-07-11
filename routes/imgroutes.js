@@ -22,11 +22,13 @@ router.post('/upload',upload.single('image'),async (req, res) => {
         image.contentType = req.file.mimetype;
         image.title = req.body.title;
         image.desc = req.body.desc;
+        image.user_id= req.body.user_id;
         await image.save();
   
         console.log('Image saved to MongoDBAtlas');
         console.log('title:',image.title);
         console.log('desc:',image.desc);
+        console.log('user_id',image.user_id);
 
         res.status(200).json({ message: ' blog Image uploaded successfully' });
     } catch (error) {
@@ -42,7 +44,8 @@ router.get('/images', async (req, res) => {
             data: image.data.toString('base64'),
             contentType: image.contentType,
             title:image.title,
-            desc:image.desc
+            desc:image.desc,
+            user_id:image.user_id
         }));
 
         res.status(200).json(imageData);
